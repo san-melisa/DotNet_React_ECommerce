@@ -1,0 +1,57 @@
+# ========== Node / React (frontend) ==========
+client/node_modules/
+client/build/
+client/.env
+client/.DS_Store
+client/.parcel-cache/
+client/.next/
+client/.turbo/
+
+# Optional: Vite, Next.js, Tailwind 
+client/dist/
+client/.vercel/
+client/.output/
+
+# ========== .NET Core / C# (backend) ==========
+server/bin/
+server/obj/
+server/*.user
+server/*.suo
+server/*.userosscache
+server/*.sln.docstates
+server/.vs/
+server/TestResults/
+server/.vscode/
+server/.idea/
+server/*.db
+server/*.pdb
+
+# Environment 
+server/appsettings.Development.json
+server/.env
+
+server/packages/
+
+# Rider / JetBrains
+server/.idea/
+
+
+# macOS / Windows  
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VSCode 
+.vscode/
+
+# dotenv
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
