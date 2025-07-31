@@ -10,6 +10,8 @@ public class DataContext : DbContext
 
     }
     public DbSet<Product> Products { get; set; } = null!;
+    
+    public DbSet<Cart> Carts { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,7 +27,7 @@ public class DataContext : DbContext
                 new Product { Id = 3, Name = "Product 3", Description = "Description for Product 3", Price = 30.99m,
                 IsActive = true, ImageUrl = "3.jpg", Stock = 25 },
                 new Product { Id = 4, Name = "Product 4", Description = "Description for Product 4", Price = 40.99m,
-                IsActive = true, ImageUrl = "4.jpg", Stock = 75 }               
+                IsActive = true, ImageUrl = "4.jpg", Stock = 75 }
             }
         );
     }

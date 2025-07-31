@@ -16,6 +16,45 @@ namespace API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
+            modelBuilder.Entity("API.Entity.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("API.Entity.CartItem", b =>
+                {
+                    b.Property<int>("CartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CartItemId");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItem");
+                });
+
             modelBuilder.Entity("API.Entity.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -52,7 +91,7 @@ namespace API.Migrations
                         {
                             Id = 1,
                             Description = "Description for Product 1",
-                            ImageUrl = "https://example.com/product1.jpg",
+                            ImageUrl = "1.jpg",
                             IsActive = true,
                             Name = "Product 1",
                             Price = 10.99m,
@@ -62,7 +101,7 @@ namespace API.Migrations
                         {
                             Id = 2,
                             Description = "Description for Product 2",
-                            ImageUrl = "https://example.com/product2.jpg",
+                            ImageUrl = "2.jpg",
                             IsActive = true,
                             Name = "Product 2",
                             Price = 20.99m,
@@ -72,7 +111,7 @@ namespace API.Migrations
                         {
                             Id = 3,
                             Description = "Description for Product 3",
-                            ImageUrl = "https://example.com/product3.jpg",
+                            ImageUrl = "3.jpg",
                             IsActive = true,
                             Name = "Product 3",
                             Price = 30.99m,
@@ -82,12 +121,36 @@ namespace API.Migrations
                         {
                             Id = 4,
                             Description = "Description for Product 4",
-                            ImageUrl = "https://example.com/product4.jpg",
+                            ImageUrl = "4.jpg",
                             IsActive = true,
                             Name = "Product 4",
                             Price = 40.99m,
                             Stock = 75
                         });
+                });
+
+            modelBuilder.Entity("API.Entity.CartItem", b =>
+                {
+                    b.HasOne("API.Entity.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entity.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("API.Entity.Cart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }
